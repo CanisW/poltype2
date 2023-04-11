@@ -565,6 +565,13 @@ def gen_peditinfile(poltype,mol,polarindextopolarizeprm):
     os.fsync(f.fileno())
 
     f.close()
+
+    # Apr 9, 2023, YW, 
+    # to enable the use of predefined peditin file for poledit. 
+    # This allows flexibility in define mp frames / pol grps 
+    if poltype.extpeditinfile:
+        os.system(f"cp {poltype.extpeditinfile} {poltype.peditinfile}")
+    # End Apr 9, 2023, YW.
     return lfzerox
     
 

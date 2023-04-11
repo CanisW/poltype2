@@ -484,6 +484,10 @@ class PolarizableTyper():
         indicestorestrain:list=field(default_factory=lambda : [])
         hetatmindices:list=field(default_factory=lambda : [])
         userconformation:bool=False
+        # Apr 9, 2023, YW, 
+        # to enable the use of predefined peditin file for poledit. 
+        # This allows flexibility in define mp frames / pol grps 
+        extpeditinfile:str=""
         def __post_init__(self): 
             """
             Intent: Post initialization variables (things you want internal variables but not necesarrily user input). Also for reading input poltype.ini file and changing variable defaults.
@@ -1178,6 +1182,11 @@ class PolarizableTyper():
                             self.qmonly=self.SetDefaultBool(line,a,True)
                         elif "sleeptime" in newline:
                             self.sleeptime = float(a)
+                        # Apr 9, 2023, YW, 
+                        # to enable the use of predefined peditin file for poledit. 
+                        # This allows flexibility in define mp frames / pol grps 
+                        elif "extpeditinfile" in newline:  
+                            self.extpeditinfile = a
                         else:
                             print('Unrecognized '+line)
                             sys.exit()
